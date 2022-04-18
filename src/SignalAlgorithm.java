@@ -1,4 +1,3 @@
-
 public class SignalAlgorithm {
 	static double[] makeSin(int n) {
 		double[] A = new double[n];
@@ -7,16 +6,16 @@ public class SignalAlgorithm {
 		}
 		return A;
 	}
-	
+
 	static double[] makeCos(int n) {
 		double[] A = new double[n];
-	
+
 		for (int i = 0; i < A.length; i++) {
 			A[i] = Math.cos(i);
 		}
 		return A;
 	}
-	
+
 	static double[] makeSin(int n, int T) {
 		double[] A = new double[n];
 		for (int i = 0; i < n; i++) {
@@ -24,7 +23,7 @@ public class SignalAlgorithm {
 		}
 		return A;
 	}
-	
+
 	static double[] makeCos(int n, int T) {
 		double[] A = new double[n];
 		for (int i = 0; i < A.length; i++) {
@@ -32,29 +31,48 @@ public class SignalAlgorithm {
 		}
 		return A;
 	}
-	
+
 	static double[] makeSin(int n, double T) {
 		double[] g = new double[n];
 		for (int i = 0; i < n; i++)
 			g[i] = Math.sin(2 * Math.PI * i / T);
 		return g;
 	}
-	
+
 	static double[] makeCos(int n, double T) {
 		double[] g = new double[n];
 		for (int i = 0; i < n; i++)
 			g[i] = Math.cos(2 * Math.PI * i / T);
 		return g;
 	}
-	
+
 	static double[] add(double[] a, double[] b) {
-		double[] A = new double[a.length];
-		for (int i = 0; i < a.length; i++) {
-			A[i] = a[i] + b[i];
+
+		double[] A;
+		if (a.length < b.length) {
+			A = new double[b.length];
+			for (int i = 0; i < b.length; i++) {
+				if (i < a.length) {
+					A[i] = a[i] + b[i];
+				} else {
+					A[i] = b[i];
+				}
+			}
+		} else {
+			A = new double[a.length];
+			for (int i = 0; i < a.length; i++) {
+				if (i < b.length) {
+					A[i] = a[i] + b[i];
+				} else {
+					A[i] = a[i];
+				}
+			}
 		}
 		return A;
+
+
 	}
-	
+
 	static double[] quantize(double[] g, int K) {
 		int Q2 = 1 << K - 1;
 		System.out.println(Q2);
@@ -69,7 +87,7 @@ public class SignalAlgorithm {
 		return gBar;
 	}
 
-	static double[] mult(double[] g, int m) {
+	static double[] mult(double[] g, double m) {
 		double[] gBar = new double[g.length];
 
 		for (int i = 0; i < g.length; i++) {
@@ -120,7 +138,7 @@ public class SignalAlgorithm {
 	static double SNR(double[] g, double[] q) {
 		return deltaquantize(g) / deltaquantize(g, q);
 	}
-	
+
 	static double db(double SNR) {
 		return 10 * Math.log10(SNR);
 	}

@@ -27,26 +27,26 @@ public class Ue02 {
 				panel.setAxisLabels("i", "g(i)");
 				panel.addPlot(new StickPlot("Sinus n=100 T=100", A));
 				panel.addPlot(new StickPlot("QSinus n=100 T=100", B));
-				// Plotting.show(panel, -1, 1);
-			}
-		}
-
-		{ // Aufgabe 2.2
-			double[] A = SignalAlgorithm.makeSin(100, 100.0);
-			int[] K = { 2, 4, 8, 16 };
-
-			for (int i = 0; i < K.length; i++) {
-				double[] B = SignalAlgorithm.quantize(A, K[i]);
-				double[] C = SignalAlgorithm.sub(A, B);
-
-				PlotPanel panel = Plotting.create("Aufgabe 2.2 " + K[i] + " Bits");
-				panel.setAxisLabels("i", "g(i)");
-				panel.addPlot(new StickPlot("Sinus n=100 T=100", A));
-				panel.addPlot(new StickPlot("QSinus n=100 T=100", B));
-				panel.addPlot(new StickPlot("DeltaSinus n=100 T=100", C));
 				Plotting.show(panel, -1, 1);
 			}
 		}
+
+//		{ // Aufgabe 2.2
+//			double[] A = SignalAlgorithm.makeSin(100, 100.0);
+//			int[] K = { 2, 4, 8, 16 };
+//
+//			for (int i = 0; i < K.length; i++) {
+//				double[] B = SignalAlgorithm.quantize(A, K[i]);
+//				double[] C = SignalAlgorithm.sub(A, B);
+//
+//				PlotPanel panel = Plotting.create("Aufgabe 2.2 " + K[i] + " Bits");
+//				panel.setAxisLabels("i", "g(i)");
+//				panel.addPlot(new StickPlot("Sinus n=100 T=100", A));
+//				panel.addPlot(new StickPlot("QSinus n=100 T=100", B));
+//				panel.addPlot(new StickPlot("DeltaSinus n=100 T=100", C));
+//				Plotting.show(panel, -1, 1);
+//			}
+//		}
 
 		// Aufgabe 2.3
 		{
@@ -57,7 +57,7 @@ public class Ue02 {
 				double[] B = SignalAlgorithm.quantize(A, K[i]);
 				double SNR = SignalAlgorithm.SNR(A, B);
 				double db = SignalAlgorithm.db(SNR);
-				System.out.println(SignalAlgorithm.SNR(A, B) + " " + db);
+				System.out.println(SNR + " " + db);
 				
 			}
 		}
